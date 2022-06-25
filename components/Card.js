@@ -32,12 +32,10 @@ export default function Card() {
         cvv: values.cardSecurityCode,
         amount: amount,
       })
-      .then((res) => {
-        console.log(res.data);
-      })
       .catch((err) => {
         console.log(err);
       });
+    console.log(res.data);
   };
 
   return (
