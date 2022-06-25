@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   FormControl,
   InputLabel,
@@ -7,11 +7,12 @@ import {
   InputAdornment,
 } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import styles from "../../styles/Card.module.css";
+import styles from "../styles/Card.module.css";
 import Cards from "react-credit-cards";
 import useForm from "../hooks/useForm.js";
 import "react-credit-cards/es/styles-compiled.css";
 import useStyles from "../mui/customStyle.js";
+import axios from "axios";
 
 export default function Card() {
   const [amount, setAmount] = useState(1);
@@ -21,8 +22,22 @@ export default function Card() {
     setAmount(e.target.value);
   };
 
-  const handleSubmitPayment = (e) => {
+  const createPayment = async (e) => {
     e.preventDefault();
+    const res = await axios
+      .post("/api/payments/pay", {
+        name: values.cardName,
+        number: values.cardNumber,
+        expiration: values.cardExpiration,
+        cvv: values.cardSecurityCode,
+        amount: amount,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -108,11 +123,12 @@ export default function Card() {
         </FormControl>
         <Button
           variant="outlined"
-          disabled={amount === 1 || amount < 1 ? true : false}
+          disabled={errors.variant === "success" && amount > 0 ? false : true}
           type="submit"
-          color="primary"
-          className={amount === 1 || amount < 1 ? null : classes.root}
-          onClick={handleSubmitPayment}
+          className={
+            errors.variant === "success" && amount > 0 ? classes.root : null
+          }
+          onClick={createPayment}
         >
           Proceed
         </Button>

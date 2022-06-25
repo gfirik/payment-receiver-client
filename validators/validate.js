@@ -20,12 +20,14 @@ export default function validateInfo(values) {
   if (values.cardNumber === null || !values.cardNumber.trim()) {
     errors.message = "Credit card number is not complete";
   } else if (creditCard.card !== null) {
-    for (let i = 0; i < creditCard.card.lengths; i++) {
-      if (values.cardNumber.length === creditCard.card.lengths[i]) {
-        errors.cnumber = true;
-      } else {
-        errors.message = "Credit card number is invalid";
-      }
+    if (
+      creditCard.card.lengths.some(
+        (length) => values.cardNumber.length === length
+      )
+    ) {
+      errors.cnumber = true;
+    } else {
+      errors.message = "Credit card number is invalid";
     }
   } else if (values.cardNumber.length === 16) {
     errors.cnumber = true;
