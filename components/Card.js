@@ -81,6 +81,7 @@ export default function Card() {
           <Input
             placeholder="mm / yyyy"
             id="card-expiration"
+            type="number"
             name="cardExpiration"
             onChange={handleChange}
             onFocus={handleFocus}
@@ -94,6 +95,7 @@ export default function Card() {
             placeholder="Cardholder CVV"
             id="card-cvv"
             name="cardSecurityCode"
+            type="number"
             onChange={handleChange}
             onFocus={handleFocus}
             defaultValue={values.cardSecurityCode}
