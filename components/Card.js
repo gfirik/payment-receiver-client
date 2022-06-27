@@ -68,7 +68,7 @@ export default function Card() {
           <Input
             placeholder="Cardholder Name"
             id="card-name"
-            type="text"
+            type="name"
             onChange={handleChange}
             onFocus={handleFocus}
             name="cardName"

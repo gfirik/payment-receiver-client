@@ -41,7 +41,11 @@ export default function validateInfo(values) {
   if (values.cardName === null || !values.cardName.trim()) {
     errors.message = "Cardholder name is not complete";
   } else if (creditCard.cardholderName.isValid) {
-    errors.cname = true;
+    if (/^[a-zA-Z]+$/.test(values.cardName)) {
+      errors.cname = true;
+    } else {
+      errors.message = "Cardholder name is invalid";
+    }
   } else {
     errors.message = "Cardholder name is invalid";
   }
