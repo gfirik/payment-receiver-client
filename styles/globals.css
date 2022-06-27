@@ -8,14 +8,29 @@ body {
 body {
   width: 100%;
   background: #c9d6ff; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #c9d6ff, #e2e2e2); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #c9d6ff, #e2e2e2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  /* Linear Gradient To Right - Simple Version */
+
+  /* background-image: linear-gradient(
+    90deg,
+    hsl(173deg 41% 62%) 0%,
+    hsl(153deg 32% 69%) 25%,
+    hsl(105deg 28% 73%) 50%,
+    hsl(71deg 37% 72%) 75%,
+    hsl(54deg 53% 72%) 100%
+  ); */
+
+  /* Complex Linear Gradient to right top */
+
+  background: linear-gradient(288deg, #FFB6B9 0%, #FFB6B9 35%, 
+      #FAE3D9 calc(35% + 1px), #FAE3D9 45%, 
+      #BBDED6 calc(45% + 1px), #BBDED6 65%, 
+      #61C0BF calc(65% + 1px), #61C0BF 100%);
 }
 a {
   color: inherit;
   text-decoration: none;
 }
-
 * {
   box-sizing: border-box;
 }
